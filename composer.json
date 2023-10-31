@@ -1,12 +1,12 @@
 {
-    "name": "laravel-fans/docker",
+    "name": "clarencetw/laravle-docker",
     "description": "Full Laravel production environment for Docker",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "sinkcup",
-            "email": "sinkcup@gmail.com"
+            "name": "clarencetw",
+            "email": "me@clarence.tw"
         }
     ],
     "autoload": {
