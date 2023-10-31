@@ -98,8 +98,8 @@ jobs:
         working-directory: ./laravel-demo
         run: |
           echo "LARAVEL_VERSION=$(cat .version)" >> $GITHUB_ENV
-          echo "DOCKER_MANIFEST=$((DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect laravelfans/laravel:$(cat .version) > /dev/null && echo 'json') || echo '')" >> $GITHUB_ENV
-          echo "DOCKER_MANIFEST_DEV=$((DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect laravelfans/laravel:$(cat .version)-dev > /dev/null && echo 'json') || echo '')" >> $GITHUB_ENV
+          echo "DOCKER_MANIFEST=$((DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect clarencetw/laravel:$(cat .version) > /dev/null && echo 'json') || echo '')" >> $GITHUB_ENV
+          echo "DOCKER_MANIFEST_DEV=$((DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect clarencetw/laravel:$(cat .version)-dev > /dev/null && echo 'json') || echo '')" >> $GITHUB_ENV
 
       - name: Build and push
         id: docker_build
@@ -109,7 +109,7 @@ jobs:
           context: laravel-demo
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: laravelfans/laravel:8,laravelfans/laravel:${{ env.LARAVEL_VERSION }}
+          tags: clarencetw/laravel:8,clarencetw/laravel:${{ env.LARAVEL_VERSION }}
 
       - name: Image digest
         if: steps.docker_build.conclusion == 'success'
@@ -124,7 +124,7 @@ jobs:
           file: laravel-demo/Dockerfile.dev
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: laravelfans/laravel:8-dev,laravelfans/laravel:${{ env.LARAVEL_VERSION }}-dev
+          tags: clarencetw/laravel:8-dev,clarencetw/laravel:${{ env.LARAVEL_VERSION }}-dev
 
       - name: Image digest dev
         if: steps.docker_build_dev.conclusion == 'success'
