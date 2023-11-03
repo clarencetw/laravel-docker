@@ -114,18 +114,3 @@ jobs:
       - name: Image digest
         if: steps.docker_build.conclusion == 'success'
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-      - name: Build and push dev
-        id: docker_build_dev
-        uses: docker/build-push-action@v3
-        if: ${{ env.DOCKER_MANIFEST_DEV == '' || github.event_name == 'push' }}
-        with:
-          context: laravel-demo
-          file: laravel-demo/Dockerfile.dev
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: clarencetw/laravel:5-dev,clarencetw/laravel:${{ env.LARAVEL_VERSION }}-dev
-
-      - name: Image digest dev
-        if: steps.docker_build_dev.conclusion == 'success'
-        run: echo ${{ steps.docker_build_dev.outputs.digest }}
